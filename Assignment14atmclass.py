@@ -1,11 +1,14 @@
 class ATM:
+    OFF_STATE = 0
+    IDLE_STATE = 1
+    SERVING_CUSTOMER_STATE = 2
 
     id = 2023425
     place = 'Lobby'
     bank_name = 'Harper Bank'
     bank_address = '1555 Harper Street'
 
-    state = 'off'
+    state = OFF_STATE
     switch_on = False
     card_inserted = False
 
