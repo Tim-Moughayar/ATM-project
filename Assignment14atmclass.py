@@ -4,17 +4,20 @@ class ATM:
     IDLE_STATE = 1
     SERVING_CUSTOMER_STATE = 2
 
-    id = 2023425
-    place = 'Lobby'
-    bank_name = 'Harper Bank'
-    bank_address = '1555 Harper Street'
-
     state = OFF_STATE
     switch_on = False
     card_inserted = False
 
     def __init__(self, id, place, bank_name, bank_address):
-        """Creates the ATM class"""
+        """
+        Creates an ATM object.
+        
+        Args:
+            id: int id number for the ATM.
+            place: str description of ATM locaton.
+            bank_name: str name of bank ATM is located.
+            bank_address: str address of ATM.
+        """
         self.id = id
         self.place = place
         self.bank_name = bank_name
@@ -88,9 +91,16 @@ class ATM:
     
         """
         atm = ATM()
+        atm.id = 2023425
+        assert atm.get_ID == 2023425
+        atm.place = 'Lobby'
+        assert atm.get_place == 'Lobby'
+        atm.bank_name = 'Harper Bank'
+        assert atm.get_bank_name == 'Harper Bank'
+        atm.bank_address = '1555 Harper Street'
+        assert atm.bank_address == '1555 Harper Street'
+        assert atm.get_bank_name == 'Harper Bank'
         assert atm.switch_state is True
         assert atm.switch_off is False
         assert atm.card_inserted_state is True
-        assert atm.get_ID == 2023425
-        assert atm.get_place == 'Lobby'
-        assert atm.get_bank_name == 'Harper Bank'
+
