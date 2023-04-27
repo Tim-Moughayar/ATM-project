@@ -38,3 +38,12 @@ class ATM:
 
     def get_bank_name(self, bank_name):
         return bank_name
+
+    def test(self):
+        atm = ATM()
+        assert atm.switch_state is True
+        assert atm.switch_off is False
+        assert atm.card_inserted_state is True
+        assert atm.get_ID == 2023425
+        assert atm.get_place == 'Lobby'
+        assert atm.get_bank_name == 'Harper Bank'
