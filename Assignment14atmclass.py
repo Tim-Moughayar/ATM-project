@@ -21,7 +21,7 @@ class ATM:
         self.bank_address = bank_address
 
     def switch_state(self, switch_on):
-        """Checks if the ATM is switched on.
+        """Assigns the ATM the switched on state.
     
         Returns:
             boolean: True if switched on.
@@ -31,7 +31,7 @@ class ATM:
         return switch_on
 
     def switch_off(self, switch_on):
-        """Checks if the ATM is switched off.
+        """Assigns the ATM the switched off state.
     
         Returns:
             boolean: False if switched off.
