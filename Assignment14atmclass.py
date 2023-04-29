@@ -72,7 +72,7 @@ class ATM:
         return place
 
     def get_bank_name(self, bank_name):
-        """Tests all class properties and methods.
+        """Gets the name of the bank.
         
         Returns:
             string: Name of the bank.
