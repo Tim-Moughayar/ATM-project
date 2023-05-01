@@ -25,9 +25,8 @@ class Atm:
         """Runs the ATM."""
 
         cash_in_atm = 10000
-        # TEMPORARY
-        print(
-            f"Sending cash_in_atm to cash dispenser module. Amount: ${cash_in_atm}")
+        print("Sending cash_in_atm to cash dispenser module. "       # TEMPORARY
+              f"Amount: ${cash_in_atm}")
         # CashDispenser.set_initial_cash(cash_in_atm)
 
         # gets pin from user
