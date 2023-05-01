@@ -1,4 +1,5 @@
 class ATM:
+    """ATM class for ATM software"""
     OFF_STATE = 0
     IDLE_STATE = 1
     SERVING_CUSTOMER_STATE = 2
@@ -23,35 +24,71 @@ class ATM:
         self.bank_address = bank_address
 
     def switch_state(self, switch_on):
+        """Assigns the ATM the switched on state.
+    
+        Returns:
+            boolean: True if switched on.
+    
+        """
         switch_on = True
         return switch_on
 
     def switch_off(self, switch_on):
+        """Assigns the ATM the switched off state.
+    
+        Returns:
+            boolean: False if switched off.
+    
+        """
         switch_on = False
         return switch_on
 
     def card_inserted_state(self, card_inserted):
+        """Checks if the ATM card has been inserted.
+    
+        Returns:
+            boolean: True if ATM card has been inserted.
+    
+        """
         card_inserted = True
         return card_inserted
 
     def get_ID(self, id):
+        """Gets the ATM ID number.
+    
+        Returns:
+            integer: ID number of the ATM.
+    
+        """
         return id
 
     def get_place(self, place):
+        """Gets the ATM location.
+        
+        Returns:
+            string: Name of ATM location.
+    
+        """
         return place
 
     def get_bank_name(self, bank_name):
+        """Gets the name of the bank.
+        
+        Returns:
+            string: Name of the bank.
+    
+        """
         return bank_name
 
     def test(self):
-        """
-        Tests ATM class properties and methods.
+        """Tests ATM class properties and methods.
 
         Returns:
             True if tests assert successfully.
 
         Raises:
             AssertionError if any of the asserts fail.
+
         """
         atm = ATM()
         atm.id = 2023425
