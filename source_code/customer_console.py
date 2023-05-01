@@ -1,48 +1,28 @@
 """Customer console class for ATM.
-
 Input:
     Customer Pin
     Customer money amount
     Customer menu choice
-
 Output:
     Display message to customer
-
 References: 
     * https://www.math-cs.gordon.edu/courses/cs211/ATMExample/javadoc/atm/physical/CustomerConsole.html
-
 Created by Frank Boxenbaum
 """
-
 import getpass
 
 
 class CustomerConsole():
     """Customer console class for ATM."""
     def __init__(self):
-        """Creates a customer console
-
-        Args:
-            read_pin (integer): Customer pin number
-            read_menu_choice (integer): Customer menu choice
-
-        Returns:
-            read_amount (float): Customer entered money amount
-        """
-
-        self._read_pin = None
-        self._read_menu_choice = None
-        self._read_amount = None
-        self._display = None
+        """Costumer console constructor"""
 
     def read_pin(self):
         """Gets user's pin number
-
         Returns:
             integer: Customer pin number
-
         """
-        print('Please insert your card')
+        # print('Please insert your card')
         pin = getpass.getpass("Please enter your pin:")
         pin = int(pin)
 
@@ -50,37 +30,45 @@ class CustomerConsole():
 
     def read_amount(self):
         """Gets user's dollar amount
-
         Returns:
             float: User's desired dollar amount
-
         """
         amount = input("Please enter the desired $ amount.")
         amount = float(amount)
 
         return amount
 
-    def display(self):
-        """Displays the menu of ATM options.
-
+    def display(self, statement):
+        """Displays given statement.
         Returns: None
-
         """
+        print(statement)
 
-        print('Please select an option')
-        print('1: Account Balance')
-        print('2: Withdraw')
-        print('3: Deposit')
+    def read_menu_choices(self, prompt, options):
+        """Displays options and gets choice.
 
-    def read_menu_choices(self):
-        """Gets user's menu choice.
+        Args:
+            options (list): list of tables from database
+            prompt (str): prompt for choice
 
         Returns:
             integer: User's desired menu choice
 
         """
-        choice = input()
-        choice = int(choice)
-        if choice
+        while True:
+            try:
+                print(prompt)
+                
+                for num, option in enumerate(options):
+                    print(f"{num + 1}: {option}")
 
-        return choice
+                choice = input()
+                choice = int(choice)
+
+                if 1 <= choice <= len(options):
+                    print()
+                    return choice
+                print(f"{choice} is not one of the options.\n")
+
+            except ValueError:
+                print(f"ValueError: {choice} is not a valid choice.\n")
