@@ -29,9 +29,10 @@ def test_read_amount_valid_input():
 
 def test_display(capsys):
     console = CustomerConsole()
-    console.display()
+    statement = "Please select a choice."
+    console.display(statement)
     captured = capsys.readouterr()
-    assert "3: Deposit" in captured.out
+    assert "Please select a choice." in captured.out
 
 
 def test_read_menu_choices():
