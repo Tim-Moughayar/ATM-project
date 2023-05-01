@@ -11,7 +11,7 @@ class ATM:
     def __init__(self, id, place, bank_name, bank_address):
         """
         Creates an ATM object.
-        
+
         Args:
             id: int id number for the ATM.
             place: str description of ATM locaton.
@@ -81,14 +81,14 @@ class ATM:
         return bank_name
 
     def test(self):
-        """Tests all class properties and methods.
-    
+        """Tests ATM class properties and methods.
+
         Returns:
-            True: If all tests successful.
-    
+            True if tests assert successfully.
+
         Raises:
-            AssertionError: If a test fails.
-    
+            AssertionError if any of the asserts fail.
+
         """
         atm = ATM()
         atm.id = 2023425
@@ -103,4 +103,3 @@ class ATM:
         assert atm.switch_state is True
         assert atm.switch_off is False
         assert atm.card_inserted_state is True
-
