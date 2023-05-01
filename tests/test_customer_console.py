@@ -1,13 +1,5 @@
-"""
-Expected output:
-    4 passed in 0.xx seconds
-References:
-    * https://realpython.com/python-testing/
-    * http://docs.pytest.org/en/latest/getting-started.html
-"""
-
 import pytest
-from customer_console_assignment_14 import CustomerConsole
+from customer_console import CustomerConsole
 
 
 def test_read_pin_valid_input(monkeypatch):
@@ -41,6 +33,7 @@ def test_read_menu_choices():
 
     def input(prompt=None):
         return input_values.pop(0)
-
+    options = ['Account Balance', 'Withdraw', 'Deposit']
+    prompt = 'Please select an option'
     console.input = input
-    assert console.read_menu_choices() == 1
+    assert console.read_menu_choices(prompt, options) == 1
