@@ -22,7 +22,7 @@ class CustomerConsole():
         Returns:
             integer: Customer pin number
         """
-        print('Please insert your card')
+        # print('Please insert your card')
         pin = getpass.getpass("Please enter your pin:")
         pin = int(pin)
 
@@ -38,23 +38,37 @@ class CustomerConsole():
 
         return amount
 
-    def display(self):
-        """Displays the menu of ATM options.
+    def display(self, statement):
+        """Displays given statement.
         Returns: None
         """
+        print(statement)
 
-        print('Please select an option')
-        print('1: Account Balance')
-        print('2: Withdraw')
-        print('3: Deposit')
+    def read_menu_choices(self, prompt, options):
+        """Displays options and gets choice.
 
-    def read_menu_choices(self):
-        """Gets user's menu choice.
+        Args:
+            options (list): list of tables from database
+            prompt (str): prompt for choice
+
         Returns:
             integer: User's desired menu choice
-        """
-        choice = input()
-        choice = int(choice)
-        # if choice
 
-        return choice
+        """
+        while True:
+            try:
+                print(prompt)
+                
+                for num, option in enumerate(options):
+                    print(f"{num + 1}: {option}")
+
+                choice = input()
+                choice = int(choice)
+
+                if 1 <= choice <= len(options):
+                    print()
+                    return choice
+                print(f"{choice} is not one of the options.\n")
+
+            except ValueError:
+                print(f"ValueError: {choice} is not a valid choice.\n")
