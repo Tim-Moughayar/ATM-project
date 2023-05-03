@@ -16,6 +16,7 @@ This branch includes a running atm that is connected to the Customer Console and
 - The Transaction module currently has only one method which starts a transaction.
 - I removed the "*bank_address*" variable from the atm class because it's an IP address to the bank, and we wouldn't be using that.
 - The other variables like "*id*", "*place*", "*bank_name*" in the ATM class are only useful if we print out a receipt, so we may end up getting rid of those.
+- I've added the proposed ERD for the SQL database needed to make the ATM work. Will upload new version if changes are adopted by the group.
 
 ## Suggestions
 
