@@ -15,7 +15,7 @@ import getpass
 class CustomerConsole():
     """Customer console class for ATM."""
     def __init__(self):
-        """Costumer console constructor"""
+        """Customer console constructor"""
 
     def read_pin(self):
         """Gets user's pin number
