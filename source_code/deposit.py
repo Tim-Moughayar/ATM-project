@@ -16,49 +16,53 @@
         * https://www.geeksforgeeks.org/types-of-inheritance-python/
 """
 
-class Deposit(CustomerConsole):
+from customer_console import CustomerConsole
+import sqlite3
+
+class Deposit:
     """Deposit class is child to CustomerConsole class."""
 
-    def __init__(self, amount, prompt, options, to):
+    def __init__(self, atm, account_destination):
         """Initiializes inheritance of values from CustomerConsole.
-
         """
-        super().__init__(amount, prompt, options)
-        self.to = to
+        super().__init__(amount)
+        self.account_destination = account_destination
 
 
     def get_customer_specifics(self):
         """Get account to send deposit and amount to send.
-
         returns: list with account and amount
         
         """
         prompt = "Select account to Deposit to:"
-        to = CustomerConsole.read_menu_choices(self, prompt, options)
-        amount = CustomerConsole.read_amount(self)
-        return [to, amount]
+        self.account_destination = CustomerConsole.read_menu_choices(self, prompt, options)
+        self.amount = CustomerConsole.read_amount(self)
 
 
-    def complete_transaction(self, to, amount):
+    def complete_transaction(self, conn=sqlite3.connect('databasename.db'), account_destination, amount):
         """Update balance for selected account with new balance of
         current balance plus deposit.
         
         Args
-            str: to
+            str: account_destination
             float: amount
             
         """
-        current_amount = 'SELECT balances FROM {}'.format(to)
+        # try:
+        #     database_path = f'file:{pathname2url(database_name)}?mode=rw'
+        #     connection = sqlite3.connect(database_path, uri=True)
+        # except:
+        #     print(f"Unable to connect to {database_name}")
+        #     raise
+        
+        cursor = connection.cursor()
+        current_amount = 'SELECT balances FROM {}'.format(account_destination)
         current_amount += amount
-        new_amount = 'UPDATE {} SET {}=?'.format(to, balances)
+        new_amount = 'UPDATE {} SET {}=?'.format(account_destination, balances)
         cursor.execute(new_amount, [current_amount])
+        print(new_amount, [current_amount])
 
 
-def main():
-    deposit = Deposit()
-    deposit.get_customer_speifics()
-    deposit.complete_transaction()
-
-
-if __name__ == "__main__":
-    main()
+deposit = Deposit()
+deposit.get_customer_speifics()
+deposit.complete_transaction()
