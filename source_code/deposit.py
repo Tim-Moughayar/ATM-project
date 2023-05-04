@@ -54,6 +54,11 @@ class Deposit(CustomerConsole):
         cursor.execute(new_amount, [current_amount])
 
 
-deposit = Deposit()
-deposit.get_customer_speifics()
-deposit.complete_transaction()
+def main():
+    deposit = Deposit()
+    deposit.get_customer_speifics()
+    deposit.complete_transaction()
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main()
