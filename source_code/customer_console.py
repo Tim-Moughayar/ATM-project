@@ -5,7 +5,7 @@ Input:
     Customer menu choice
 Output:
     Display message to customer
-References: 
+References:
     * https://www.math-cs.gordon.edu/courses/cs211/ATMExample/javadoc/atm/physical/CustomerConsole.html
 Created by Frank Boxenbaum
 """
@@ -24,7 +24,6 @@ class CustomerConsole():
         """
         while True:
             try:
-            # print('Please insert your card')
                 pin = getpass.getpass("Please enter your pin:")
                 pin = int(pin)
                 break
@@ -38,7 +37,7 @@ class CustomerConsole():
             float: User's desired dollar amount
         """
         amount = input("Please enter the desired $ amount.")
-        amount = float(amount)
+        amount = float('%.2f', amount)
 
         return amount
 
@@ -62,7 +61,7 @@ class CustomerConsole():
         while True:
 
             print(prompt)
-            
+
             try:
                 for num, option in enumerate(options):
                     print(f"{num + 1}: {option}")
@@ -73,7 +72,7 @@ class CustomerConsole():
                 if 1 <= choice <= len(options):
                     print()
                     return choice
-                
+
             except ValueError:
                 if choice == "":
                     return None
