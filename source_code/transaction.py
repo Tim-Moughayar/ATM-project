@@ -25,21 +25,24 @@ class Transaction():
         Returns: None
         """
         
+        prompt = 'Please select an option or press <enter> to go back.'
+        options = ['Account Balance', 'Withdraw', 'Deposit']
+        choice = self.atm.get_customer_console().read_menu_choices(self, prompt, options)
+
+        if choice == 1:
+            print("Getting account balance.") # TEMPORARY
+        elif choice == 2:
+            print("Starting withdrawal.") # TEMPORARY
+        elif choice == 3:
+            print("Starting deposit.") # TEMPORARY
+
+
+    def repeat_transaction(self):
+        prompt = ("Would you like to perform another transaction? ")
+        options = ['Yes', 'No']
         while True:
-            prompt = 'Please select an option'
-            options = ['Account Balance', 'Withdraw', 'Deposit']
             choice = self.atm.get_customer_console().read_menu_choices(self, prompt, options)
 
-            if choice == 1:
-                print("Getting account balance.") # TEMPORARY
-            elif choice == 2:
-                print("Starting withdrawal.") # TEMPORARY
-            elif choice == 3:
-                print("Starting deposit.") # TEMPORARY
+            if choice is not None:
+                return choice
 
-            prompt = ("Would you like to perform another transaction?")
-            options = ['Yes', 'No']
-            choice = self.atm.get_customer_console().read_menu_choices(self, prompt, options)
-
-            if choice == 2:
-                break
