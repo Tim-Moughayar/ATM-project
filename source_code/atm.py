@@ -30,11 +30,16 @@ class Atm:
         # CashDispenser.set_initial_cash(cash_in_atm)
 
         # gets pin from user
-        pin = CustomerConsole.read_pin(self)
-        card = 5425233430109903
+        while True:
+            pin = CustomerConsole.read_pin(self)
+            card = 5425233430109903
 
-        transaction = Transaction(self, card, pin, 1)
-        Transaction.perform_transaction(transaction)
+            transaction = Transaction(self, card, pin, 1)
+            while True: 
+                Transaction.perform_transaction(transaction)
+                choice = Transaction.repeat_transaction(transaction)
+                if choice == 2:
+                    break
 
     def get_ID(self):
         return self.id
