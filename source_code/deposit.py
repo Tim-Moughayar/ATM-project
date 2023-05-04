@@ -60,5 +60,5 @@ def main():
     deposit.complete_transaction()
 
 
-if __name__ == "__main__":  # pragma: no cover
+if __name__ == "__main__":
     main()
