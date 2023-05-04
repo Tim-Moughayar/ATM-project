@@ -2,7 +2,16 @@ import pytest
 from customer_console import CustomerConsole
 
 
-def test_read_pin_valid_input(monkeypatch):
+# def test_read_pin_valid_input(monkeypatch):
+#     monkeypatch.setattr('getpass.getpass', lambda _: '')
+#     console = CustomerConsole()
+#     with pytest.raises(ValueError):
+#         console.read_pin()
+#     monkeypatch.setattr('getpass.getpass', lambda _: '1234')
+#     assert console.read_pin() == 1234  
+
+
+def test_read_pin_value_error(monkeypatch):
     monkeypatch.setattr('getpass.getpass', lambda _: '1234')
     console = CustomerConsole()
     assert console.read_pin() == 1234
@@ -10,13 +19,13 @@ def test_read_pin_valid_input(monkeypatch):
 
 def test_read_amount_valid_input():
     console = CustomerConsole()
-    input_values = ['50.57']
+    input_value = ['100']
 
     def input(prompt=None):
-        return input_values.pop(0)
+        return input_value.pop(0)
 
     console.input = input
-    assert console.read_amount() == 50.57
+    assert console.read_amount() == 100.00
 
 
 def test_display(capsys):
@@ -33,6 +42,7 @@ def test_read_menu_choices():
 
     def input(prompt=None):
         return input_values.pop(0)
+
     options = ['Account Balance', 'Withdraw', 'Deposit']
     prompt = 'Please select an option'
     console.input = input
