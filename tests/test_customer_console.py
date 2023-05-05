@@ -1,5 +1,5 @@
 import pytest
-from customer_console import CustomerConsole
+from source_code.customer_console import CustomerConsole
 
 
 def test_read_pin_valid_input(monkeypatch):
