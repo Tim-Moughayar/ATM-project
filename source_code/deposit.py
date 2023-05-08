@@ -39,7 +39,7 @@ class Deposit:
         self.amount = CustomerConsole.read_amount(self)
 
 
-    def complete_transaction(self, conn=sqlite3.connect('databasename.db'), account_destination, amount):
+    def complete_transaction(self, account_destination, amount):
         """Update balance for selected account with new balance of
         current balance plus deposit.
         
@@ -48,14 +48,7 @@ class Deposit:
             float: amount
             
         """
-        # try:
-        #     database_path = f'file:{pathname2url(database_name)}?mode=rw'
-        #     connection = sqlite3.connect(database_path, uri=True)
-        # except:
-        #     print(f"Unable to connect to {database_name}")
-        #     raise
-        
-        cursor = connection.cursor()
+
         current_amount = 'SELECT balances FROM {}'.format(account_destination)
         current_amount += amount
         new_amount = 'UPDATE {} SET {}=?'.format(account_destination, balances)
