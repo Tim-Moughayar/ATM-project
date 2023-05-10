@@ -1,5 +1,7 @@
 import tkinter
 from tkinter import *
+#import keyboard
+import customer_console
 
 class Window(Frame):
     def __init__(self, master=None):
@@ -7,6 +9,7 @@ class Window(Frame):
         self.master = master
 root = Tk()
 app = Window(root)
+
 
 def clear_input_box():
     input_box.delete(0,END)
@@ -16,6 +19,7 @@ def update_output_box(update_text):
     output_box.insert(END, update_text) # inserts update_text at the end of the text in output_box
     output_box.insert(END, "\n") # adds a line break after the inserted text
     output_box.configure(state=DISABLED) # locks output_box so it can no longer be updated
+    transaction_log.append(update_text) # adds the updated text to the transaction log
     output_box.yview_moveto(1) # scrolls to the bottom of output_box
 
 
@@ -26,10 +30,12 @@ def get_input_box():
 def submit_user_input():
     user_input = get_input_box()
     update_output_box(user_input)
-    historical_input.append(user_input)
     clear_input_box()
+    return user_input
 
-historical_input = []    
+
+
+transaction_log = []    
 
 output_label = Label(text="ATM Output:") # label for output_box
 output_box = Text(root, height=15, width=30, bg="light yellow", state=DISABLED) # creates read-only text box for program output
@@ -37,7 +43,6 @@ input_label = Label(text="User Input:") # label for input_box
 input_box = Entry(root, width=30, textvariable=None, bg="light yellow") # entry widget for user input
 clear_button = Button(root, text="Clear", command=lambda: clear_input_box()) # button to clear text from input_box
 enter_button = Button(root, text="Enter", command=lambda: submit_user_input()) # button to submit user input
-
 
 root.wm_title("Welcome to Ponzi Bank")
 
@@ -50,3 +55,6 @@ enter_button.grid(row=2,column=1)
 
 
 root.mainloop()
+#while True:
+#    if keyboard.read_key() == 'Enter':
+#        submit_user_input()
