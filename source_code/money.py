@@ -6,14 +6,16 @@
         to_string
     Output:
         Representation for money amounts
-    References: 
+    References:
         * https://www.math-cs.gordon.edu/courses/cs211/ATMExample/ClassLinks.html#Money
     Created by Frank Boxenbaum, Timothy El Moughayar, and Michael Radcliffe
     """
+
+
 class Money:
     """Money class for ATM."""
 
-    def __init__(self, dollars, cents, amount_to_add, amount_to_subtract):
+    def __init__(self, dollars, cents, amount_to_add, amount_to_subtract, compare_to):
         """Money class constructor.
 
         Args:
@@ -26,15 +28,17 @@ class Money:
         self.amount_to_add = amount_to_add
         self.amount_to_subtract = amount_to_subtract
         self.compare_to = compare_to
+        self.money = 100 * dollars + cents
 
-    def to_string(self, cents):
+    def to_string(self, money):
         """Creates string representation of money amount.
 
         Returns:
             string: String representation of money amount
         """
-        string_amount = "$" + \
-            cents/100 + (cents %100 >= 10  + "." + cents % 100 + ".0" + cents % 100)
+        string_amount = money / 100
+        string_amount = float('%.2f', string_amount)
+        string_amount = "$" + str(string_amount)
 
         return string_amount
 
