@@ -16,49 +16,53 @@
         * https://www.geeksforgeeks.org/types-of-inheritance-python/
 """
 
-class Deposit(CustomerConsole):
-    """Deposit class is child to CustomerConsole class."""
+from customer_console import CustomerConsole
+from balances import Balance
+import sqlite3
 
-    def __init__(self, amount, prompt, options, to):
-        """Initiializes inheritance of values from CustomerConsole.
 
+
+class Deposit:
+    """Deposit class is child to Transaction class."""
+
+    def __init__(self, atm):
+        """Initiializes deposit constructor.
         """
-        super().__init__(amount, prompt, options)
-        self.to = to
-
+        self.atm = atm
 
     def get_customer_specifics(self):
         """Get account to send deposit and amount to send.
-
         returns: list with account and amount
         
         """
         prompt = "Select account to Deposit to:"
-        to = CustomerConsole.read_menu_choices(self, prompt, options)
-        amount = CustomerConsole.read_amount(self)
-        return [to, amount]
+        options = ['checking', 'savings']
+        account_destination = self.atm.CustomerConsole.read_menu_choices(self, prompt, options)
+        amount = CustomerConsole().read_amount(self)
+        return [account_destination, amount]
+        
 
 
-    def complete_transaction(self, to, amount):
+    def complete_transaction(self, conn, account_destination, amount):
         """Update balance for selected account with new balance of
         current balance plus deposit.
         
         Args
-            str: to
+            str: account_destination
             float: amount
             
         """
-        current_amount = 'SELECT balances FROM {}'.format(to)
+
+        balances = Balance.get_balances(self)
+        cursor = conn.cursor()
+        current_amount = 'SELECT balances FROM {}'.format(account_destination)
         current_amount += amount
-        new_amount = 'UPDATE {} SET {}=?'.format(to, balances)
+        new_amount = 'UPDATE {} SET {}=?'.format(account_destination, balances)
         cursor.execute(new_amount, [current_amount])
+        print(new_amount, [current_amount])
 
 
-def main():
-    deposit = Deposit()
-    deposit.get_customer_speifics()
-    deposit.complete_transaction()
-
-
-if __name__ == "__main__":
-    main()
+conn = sqlite3.connect('databasename.db')
+deposit = Deposit()
+deposit.get_customer_specifics()
+deposit.complete_transaction()
