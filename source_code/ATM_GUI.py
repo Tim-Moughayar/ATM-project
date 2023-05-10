@@ -1,12 +1,13 @@
 import tkinter
 from tkinter import *
-#import keyboard
-import customer_console
+#from customer_console import CustomerConsole
+
 
 class Window(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.master = master
+
 root = Tk()
 app = Window(root)
 
@@ -21,6 +22,7 @@ def update_output_box(update_text):
     output_box.configure(state=DISABLED) # locks output_box so it can no longer be updated
     transaction_log.append(update_text) # adds the updated text to the transaction log
     output_box.yview_moveto(1) # scrolls to the bottom of output_box
+    
 
 
 def get_input_box():
@@ -55,6 +57,3 @@ enter_button.grid(row=2,column=1)
 
 
 root.mainloop()
-#while True:
-#    if keyboard.read_key() == 'Enter':
-#        submit_user_input()

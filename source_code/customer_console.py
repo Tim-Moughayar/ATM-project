@@ -10,6 +10,7 @@ References:
 Created by Frank Boxenbaum
 """
 import getpass
+import ATM_GUI
 
 
 class CustomerConsole():
@@ -24,7 +25,9 @@ class CustomerConsole():
         """
         while True:
             try:
-                pin = getpass.getpass("Please enter your pin:")
+                updated_text = 'Please enter your pin:'
+                ATM_GUI.update_output_box(updated_text)
+                pin = getpass.getpass()
                 pin = int(pin)
                 break
             except ValueError:
@@ -46,6 +49,7 @@ class CustomerConsole():
         Returns: None
         """
         print(statement)
+        # This will be changed to gui display
 
     def read_menu_choices(self, prompt, options):
         """Displays options and gets choice.
@@ -76,3 +80,5 @@ class CustomerConsole():
             except ValueError:
                 if choice == "":
                     return None
+
+CustomerConsole.read_pin()
