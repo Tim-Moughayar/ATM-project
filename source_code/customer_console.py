@@ -72,3 +72,8 @@ class CustomerConsole():
 
             except ValueError:
                 print(f"ValueError: {choice} is not a valid choice.\n")
+                
+        def prompt_transaction_input(self, message):
+            print(message)
+            user_input = input()
+            return user_input  
