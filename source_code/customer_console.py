@@ -10,13 +10,14 @@ References:
 Created by Frank Boxenbaum
 """
 import getpass
-import ATM_GUI
+from gui_class import Window
 
 
 class CustomerConsole():
     """Customer console class for ATM."""
-    def __init__(self):
+    def __init__(self, gui):
         """Costumer console constructor"""
+        self.gui = gui
 
     def read_pin(self):
         """Gets user's pin number
@@ -25,9 +26,15 @@ class CustomerConsole():
         """
         while True:
             try:
-                updated_text = 'Please enter your pin:'
-                ATM_GUI.update_output_box(updated_text)
-                pin = getpass.getpass()
+                # gui = Window()
+                update_text = 'Please enter your pin:'
+                Window.update_output_box(self.gui, update_text)
+                pin = Window.get_input_box(self.gui)
+                # hidden_pin = "*" * len(pin)
+                # gui.mainloop()
+                print(pin)
+                print(type(pin))
+                # pin = getpass.getpass()
                 pin = int(pin)
                 break
             except ValueError:
@@ -48,7 +55,7 @@ class CustomerConsole():
         """Displays given statement.
         Returns: None
         """
-        print(statement)
+        Window.update_output_box(statement)
         # This will be changed to gui display
 
     def read_menu_choices(self, prompt, options):
@@ -80,5 +87,3 @@ class CustomerConsole():
             except ValueError:
                 if choice == "":
                     return None
-
-CustomerConsole.read_pin()

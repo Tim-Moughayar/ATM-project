@@ -5,7 +5,7 @@ from transaction import Transaction
 class Atm:
     """ATM class for ATM software"""
 
-    def __init__(self, id, place, bank_name):
+    def __init__(self, gui, id, place, bank_name):
         """Creates an ATM object.
 
         Args:
@@ -14,12 +14,13 @@ class Atm:
             bank_name (str): Name of the bank owning this ATM
 
         """
+        self.gui = gui
         self.id = id
         self.place = place
         self.bank_name = bank_name
 
         # Create objects corresponding to component parts
-        CustomerConsole()
+        CustomerConsole(self.gui)
 
     def run_atm(self):
         """Runs the ATM."""
