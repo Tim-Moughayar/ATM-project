@@ -22,7 +22,7 @@ import sqlite3
 
 
 
-class Deposit:
+class Deposit():
     """Deposit class is child to Transaction class."""
 
     def __init__(self, atm):
@@ -37,13 +37,18 @@ class Deposit:
         """
         prompt = "Select account to Deposit to:"
         options = ['checking', 'savings']
-        account_destination = self.atm.CustomerConsole.read_menu_choices(self, prompt, options)
-        amount = CustomerConsole().read_amount(self)
+        choice = CustomerConsole.read_menu_choices(self.atm, prompt, options)
+        if choice == 1:
+            account_destination = options[choice - 1]
+        else:
+            account_destination = options[choice - 1]
+            
+        amount = CustomerConsole().read_amount()
         return [account_destination, amount]
         
 
 
-    def complete_transaction(self, conn, account_destination, amount):
+    def complete_transaction(self, account_destination, amount):
         """Update balance for selected account with new balance of
         current balance plus deposit.
         
@@ -52,17 +57,12 @@ class Deposit:
             float: amount
             
         """
-
-        balances = Balance.get_balances(self)
+        conn = sqlite3.connect('databasename.db')
+        balances = Balance.get_balance(self)
         cursor = conn.cursor()
         current_amount = 'SELECT balances FROM {}'.format(account_destination)
         current_amount += amount
         new_amount = 'UPDATE {} SET {}=?'.format(account_destination, balances)
         cursor.execute(new_amount, [current_amount])
         print(new_amount, [current_amount])
-
-
-conn = sqlite3.connect('databasename.db')
-deposit = Deposit()
-deposit.get_customer_specifics()
-deposit.complete_transaction()
+        conn.close()
