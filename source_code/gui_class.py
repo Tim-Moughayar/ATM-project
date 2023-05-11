@@ -1,6 +1,11 @@
 import tkinter as tk
 from tkinter import *
-
+import customer_console
+import main_balances
+import deposit
+import cash_dispenser
+import atm
+import balances
 
 class Window(tk.Tk):
     def __init__(self):
@@ -14,6 +19,12 @@ class Window(tk.Tk):
         self.input_box = Entry(self, width=30, textvariable=None, bg="light yellow", show="*") # entry widget for user input
         self.clear_button = Button(self, text="Clear", command=lambda: self.clear_input_box()) # button to clear text from input_box
         self.enter_button = Button(self, text="Enter", command=lambda: self.submit_user_input()) # button to submit user input
+        self.login_button = Button(self, text="Login", command=lambda: None)
+        self.deposit_button = Button(self, text="Deposit", command=lambda: None)
+        self.withdraw_button = Button(self, text="Withdrawal", command=lambda: None)
+        self.transfer_button = Button(self, text="Transfer", command=lambda: None)
+        self.yes_button = Button(self, text="Yes", command=lambda: None)
+        self.no_button = Button(self, text="No", command=lambda: None)
 
         self.wm_title("Welcome to Ponzi Bank")
 
@@ -23,6 +34,13 @@ class Window(tk.Tk):
         self.input_box.grid(row=1,column=1)
         self.clear_button.grid(row=2,column=0)
         self.enter_button.grid(row=2,column=1)
+        self.login_button.grid(row=3, column=1)
+        self.deposit_button.grid(row=4, column=1)
+        self.withdraw_button.grid(row=5, column=1)
+        self.transfer_button.grid(row=6, column=1)
+        self.yes_button.grid(row=7, column=1)
+        self.no_button.grid(row=8, column=1)
+
 
     def update_output_box(self, update_text):
         print("running")
