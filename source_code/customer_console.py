@@ -15,9 +15,9 @@ from gui_class import Window
 
 class CustomerConsole():
     """Customer console class for ATM."""
-    def __init__(self, gui):
+    def __init__(self):
         """Costumer console constructor"""
-        self.gui = gui
+        # self.gui = gui
 
     def read_pin(self):
         """Gets user's pin number
@@ -27,14 +27,14 @@ class CustomerConsole():
         while True:
             try:
                 # gui = Window()
-                update_text = 'Please enter your pin:'
-                Window.update_output_box(self.gui, update_text)
-                pin = Window.get_input_box(self.gui)
-                # hidden_pin = "*" * len(pin)
-                # gui.mainloop()
-                print(pin)
-                print(type(pin))
-                # pin = getpass.getpass()
+                # update_text = 'Please enter your pin:'
+                # Window.update_output_box(self.gui, update_text)
+                # pin = Window.get_input_box(self.gui)
+                # # hidden_pin = "*" * len(pin)
+                # # gui.mainloop()
+                # print(pin)
+                # print(type(pin))
+                pin = getpass.getpass()
                 pin = int(pin)
                 break
             except ValueError:
@@ -47,7 +47,7 @@ class CustomerConsole():
             float: User's desired dollar amount
         """
         amount = input("Please enter the desired $ amount.")
-        amount = float('%.2f', amount)
+        amount = f'{float(amount):.2f}'
 
         return amount
 
@@ -55,7 +55,7 @@ class CustomerConsole():
         """Displays given statement.
         Returns: None
         """
-        Window.update_output_box(statement)
+        # Window.update_output_box(statement)
         # This will be changed to gui display
 
     def read_menu_choices(self, prompt, options):

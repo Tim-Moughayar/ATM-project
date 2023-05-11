@@ -24,7 +24,7 @@ class Balance():
         self._pin = pin
         
     
-    def balance(self):
+    def account_balance(self):
         """Gets account balance"""
         return self.get_balance()
     
@@ -32,14 +32,7 @@ class Balance():
     def get_balance(self):
         """Method for getting account balance"""
         #create_connection()
-        #sql = Select * From Where PIN = 'xyz'
+        #sql = Select Balance From Accounts Where PIN = '1234'
         #run and commit sql
         return 500
-        
-
-
-
-        
-        
-        
         

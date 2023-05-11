@@ -20,7 +20,7 @@ class Atm:
         self.bank_name = bank_name
 
         # Create objects corresponding to component parts
-        CustomerConsole(self.gui)
+        CustomerConsole()
 
     def run_atm(self):
         """Runs the ATM."""

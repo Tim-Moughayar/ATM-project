@@ -21,6 +21,9 @@ class Money:
         Args:
             dollars: int dollar amount.
             cents: int cent amount.
+            amount_to_add: amount to add to cents.
+            amount_to_subtract: amount to subtract from cents.
+            compare_to: amount to compare 
 
         """
         self.dollars = dollars
@@ -44,15 +47,15 @@ class Money:
 
     def add(self):
         """Adds an amount of money"""
-        self.cents += self.amount_to_add.cents
+        self.cents += self.amount_to_add
 
     def subtract(self, amount):
         """Subtracts an amount of money"""
         if amount <= self.amount_to_subtract:
-            self.cents -= self.amount_to_subtract.cents
+            self.cents -= self.amount_to_subtract
 
     def less_equal(self):
         """Compares two money amounts"""
-        less_equal = self.cents <= self.compare_to.cents
-
-        return less_equal
+        less_equal = self.cents <= self.compare_to
+        if less_equal is True:
+            return True
