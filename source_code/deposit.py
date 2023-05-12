@@ -57,7 +57,7 @@ def complete_transaction(self, account_destination, amount):
             float: amount
             
         """
-        conn = sqlite3.connect('databasename.db')
+        conn = sqlite3.connect('atm_database.db')
         balances = Balance.get_balance(self)
         cursor = conn.cursor()
         current_amount = 'SELECT balances FROM Accounts WHERE AccountType={}'.format(account_destination)
