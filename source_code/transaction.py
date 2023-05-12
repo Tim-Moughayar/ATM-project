@@ -37,7 +37,7 @@ class Transaction():
         
         if choice == 1:
             print("Getting account balance.")
-            balance = Balance(self.pin).account_balance()
+            balance = Balance(self.pin).account_balance
             print("Balance: " + str(balance))
         elif choice == 2:
             print("Starting withdrawal.") # TEMPORARY
@@ -49,7 +49,7 @@ class Transaction():
             transfer_amount = my_console.prompt_transaction_input("How much would you like to transfer?")
             print("Starting tranfer")
             my_transfer = Transfer(from_pin, to_pin, transfer_amount)
-            my_transfer.update_accounts
+            my_transfer.update_accounts()
             from_balance = Balance(from_pin).account_balance()
             print("Account Balance for " + str(from_pin) + ": " + str(from_balance))
             to_balance = Balance(to_pin).account_balance()

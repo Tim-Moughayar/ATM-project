@@ -7,6 +7,8 @@ References:
     
 Created by Ravina
 """
+import sqlite3
+database = "atm_database.db"
 
 class Balance():
     """Balance class for ATM."""
@@ -14,25 +16,44 @@ class Balance():
         """Get pin and display balance"""
         self.pin = pin
 
+        
+            
     @property
     def pin(self):
         """Gets and sets pin"""
-        return self.pin
+        return self._pin
 
     @pin.setter
     def pin(self, pin):
         self._pin = pin
         
     
+    @property
     def account_balance(self):
-        """Gets account balance"""
         return self.get_balance()
     
     
     def get_balance(self):
-        """Method for getting account balance"""
-        #create_connection()
-        #sql = Select Balance From Accounts Where PIN = '1234'
-        #run and commit sql
-        return 500
+        connection = sqlite3.connect(database)
+        cursor = connection.cursor()
+        sql = """
+            SELECT Sum(Balance) From Users
+            inner join Accounts on Users.UserID=Accounts.UserID
+            where Users.PIN = """ + str(self.pin)
+        cursor.execute(sql)
+        result = cursor.fetchone()
+        connection.close()
+        return result[0]
+        
+
+
+        
+        
+        
+
+
+
+        
+        
+        
         

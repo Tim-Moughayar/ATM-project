@@ -10,6 +10,9 @@ Created by Ravina
 """
 
 from balances import Balance
+import sqlite3
+import sqlite3
+database = "atm_database.db"
 
 
 class Transfer():
@@ -23,7 +26,7 @@ class Transfer():
     @property
     def from_pin(self):
         """Gets and sets from_pin"""
-        return self.from_pin
+        return self._from_pin
 
     @from_pin.setter
     def from_pin(self, from_pin):
@@ -33,7 +36,7 @@ class Transfer():
     @property
     def to_pin(self):
         """Gets and sets to_pin"""
-        return self.to_pin
+        return self._to_pin
 
     @to_pin.setter
     def to_pin(self, to_pin):
@@ -43,20 +46,73 @@ class Transfer():
     @property
     def transfer_amount(self):
         """Gets and sets transfer_amount"""
-        return self.transfer_amount
+        return self._transfer_amount
 
     @transfer_amount.setter
     def transfer_amount(self, transfer_amount):
         self._transfer_amount = transfer_amount
+     
+    def tesnnnt():
+       return 500   
         
-        
-    def update_accounts():
+    def update_accounts(self):
         """Method for getting account balance"""
-        #create_connection()
-        #sql = UPDATE Accounts SET Balance = Balance - (transfer_amount) WHERE AccountID = from_pin
-        #sql = UPDATE Accounts SET Balance = Balance + (transfer_amount) WHERE AccountID = to_pin
-        #run and commit sql
+        connection = sqlite3.connect(database)
+        cursor = connection.cursor()
+        from_sql = """SELECT AcountId FROM Users
+            join Accounts On Users.UserID = Accounts.UserID
+            where pin = """ + str(self.from_pin) + """ LIMIT 1"""
+        cursor.execute(from_sql)
+        from_account = cursor.fetchone()[0]
         
+        to_sql = """SELECT AcountId FROM Users
+            join Accounts On Users.UserID = Accounts.UserID
+            where pin = """ + str(self.to_pin) + """ LIMIT 1"""
+        cursor.execute(to_sql)
+        to_account = cursor.fetchone()[0]
+        
+        update_from_sql = """UPDATE Accounts
+                        SET Balance = Balance + """ + str(self.transfer_amount) + """ WHERE AcountID = """ + str(from_account)
+        
+        cursor1 = connection.cursor()
+        cursor1.execute(update_from_sql)
+
+        update_to_sql = """UPDATE Accounts
+                        SET Balance = Balance - """ + str(self.transfer_amount) + """ WHERE AcountID = """ + str(to_account)
+        
+        cursor2 = connection.cursor()
+        cursor2.execute(update_to_sql)
+
+        connection.commit()
+        
+        connection.close()
+        
+        
+        
+        
+        
+    
+   
+    def updateaccountbalance(self,accountid,transferamount):
+        connection = sqlite3.connect(database)
+        cursor = connection.cursor()
+
+        sql = """UPDATE Accounts""" 
+        + """ SET Balance = Balance + """ + str(transferamount) 
+        + """ WHERE AcountID = """ + accountid 
+
+        cursor = connection.cursor()
+        cursor.execute(sql)
+
+        print("Successfully updated!")
+
+        connection.commit()
+        
+        
+
+        
+
+                    
     
     
     
