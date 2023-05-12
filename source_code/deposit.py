@@ -48,7 +48,7 @@ class Deposit():
         
 
 
-    def complete_transaction(self, account_destination, amount):
+def complete_transaction(self, account_destination, amount):
         """Update balance for selected account with new balance of
         current balance plus deposit.
         
@@ -60,7 +60,7 @@ class Deposit():
         conn = sqlite3.connect('databasename.db')
         balances = Balance.get_balance(self)
         cursor = conn.cursor()
-        current_amount = 'SELECT balances FROM {}'.format(account_destination)
+        current_amount = 'SELECT balances FROM Accounts WHERE AccountType={}'.format(account_destination)
         current_amount += amount
         new_amount = 'UPDATE {} SET {}=?'.format(account_destination, balances)
         cursor.execute(new_amount, [current_amount])
