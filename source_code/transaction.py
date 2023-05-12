@@ -3,7 +3,7 @@
 # from customer_console import CustomerConsole
 # from transfer import Transfer
 from deposit import Deposit
-
+from withdraw import Withdraw
 
 class Transaction():
     """Starts a Withdrawal, Deposit or Inquiry transaction."""
@@ -42,15 +42,15 @@ class Transaction():
             balance = Balance(self.pin).account_balance()
             print("Balance: " + str(balance))
         elif choice == 2:
-            print("Starting withdrawal.") # TEMPORARY
+            print("Starting withdrawal.")
+            withdraw = Withdraw(self.atm, self.pin)
+            specifics = withdraw.get_customer_specifics()
+            withdraw.complete_transaction(self, specifics)
         elif choice == 3:
             print("Starting deposit.")
-            deposit = Deposit(self.atm)
+            deposit = Deposit(self.atm, self.pin)
             specifics = deposit.get_customer_specifics()
-            print(specifics)
-            account_destination = specifics[0]
-            amount = specifics[1]
-            deposit.complete_transaction(account_destination, amount)
+            deposit.complete_transaction(self, specifics)
         
         
         elif choice == 4:
