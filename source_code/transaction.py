@@ -3,7 +3,7 @@
 # from customer_console import CustomerConsole
 # from transfer import Transfer
 from deposit import Deposit
-
+from withdraw import Withdraw
 
 class Transaction():
     """Starts a Withdrawal, Deposit or Inquiry transaction."""
